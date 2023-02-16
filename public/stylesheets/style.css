@@ -173,6 +173,47 @@ a
 color: white;
 }
 
+textarea{
+  width: 60%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
 
+  
+}
+.container_chat_darker{
+  border: 2px solid #dedede;
+  background-color: #b3acac;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
 
+/* Clear floats */
+.container_chat_darker::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
+.user-left {
+  float: left;
+  color: #999;
+}
+
+.box_under{
+    display: flex;
+    justify-content:start;
+    flex-direction: column;
+    
+
+}
+.box_top  {
+  display: flex;
+  flex-direction: column;
+  
+}
