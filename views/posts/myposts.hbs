@@ -1,0 +1,36 @@
+      
+{{#if foundMyPosts}}
+{{#each foundMyPosts}}
+
+      
+
+    <div class="container">
+        <h4>{{name}}</h4>
+    <img  src="{{imageUrl}}" alt="Avatar" class="image">
+               
+    <div class="overlay" >
+        <div    class="text"><a href="/posts/details/{{_id}}">{{name}}</a></div>
+    </div>  
+                
+                
+                <a  style="z-index: 3000;"  href="/posts/edit/{{_id}}"><button>Edit</button></a>
+                <a  style="z-index: 3000;" href="/posts/delete/{{_id}}"><button>Delete</button></a>     
+    </div>      
+               
+  
+    
+
+{{/each}}
+
+{{else}}
+
+    <p>No Post yet</p> 
+    <button>
+    <a href="/posts/newPost">Create new Post!</a>
+  </button>
+
+{{/if }}
+
+
+
+
