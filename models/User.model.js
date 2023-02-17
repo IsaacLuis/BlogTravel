@@ -17,6 +17,15 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'Password is required.']
     },
+    fullname:{
+      type: String,
+    },
+    bio:{
+      type: String,
+    },
+    imageBio:{
+      type: String,
+    },
     posts: [{ 
         type: Schema.Types.ObjectId, ref: 'Post' 
     }]

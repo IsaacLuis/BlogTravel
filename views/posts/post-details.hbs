@@ -7,16 +7,16 @@
     <form  id="usrform" action="/posts/add-review/{{_id}}" method="post">
   
 
-    <button type="submit">Add Comment</button>
+    <button  class="button-12"  type="submit">Add Comment</button>
 
     </form>
         <textarea type="text"   name="comment" form="usrform">Enter comments here...</textarea>
 {{#if reviews}}
 
-    
+       
 
     {{#each reviews}}
-            
+             
         <div class="container_chat_darker">
        <!-- <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right">  --->
         <p>{{comment}}</p>

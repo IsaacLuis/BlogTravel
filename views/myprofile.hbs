@@ -1,9 +1,4 @@
 
-  <!-- Add icon library -->
-
-    
-  
-{{#if createdProfile}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <link rel="stylesheet" href="/stylesheets/stylepro.css">
 <div class="card">
@@ -27,30 +22,3 @@
     <a href="/posts/newPost">Create new Post!</a>
   </button>
   <a href="/posts/myposts/{{user._id}}"><button>My Posts</button></a>
-
-
-  {{else}}
-
-
-<h2>Add a New Profile</h2>
-
-<form action="/users/profile" method="post" enctype="multipart/form-data">
-
-<label for="">Full name</label>
-<input type="text" name="fullname"  value="{{fullname}}">
-
-<label for="">Bio</label>
-<input type="text" name="bio" value="{{bio}}">
-
-<label for="">Image</label>
-<input type="file" name="imageUrl" value="{{imageUrl}}" >
-
-<button type="submit">Add Profile</button>
-
-</form>
-
- 
-
-
-  {{/if}}
-

@@ -37,6 +37,10 @@ router.get('/newPost', isLoggedIn,  (req, res, next) => {
 
 })
 
+
+
+
+
 // ******All Posts*******
 router.get('/all-posts', (req, res, next) => {
     const user = req.session.user
@@ -69,23 +73,7 @@ router.get('/details/:id', (req, res, next) => {
 
 })
 
-// ****** My  Details*******
-router.get('/mydetails/:id', (req, res, next) => {
-    
-    Post.findById(req.params.id)
-    .populate('owner')
-    .populate({
-        path: "reviews",
-        populate: {path: "user"}
-    })
-    .then((foundMyDetailPosts) => {
-        res.render('posts/posts-mydetails.hbs', foundMyDetailPosts)
-    })
-    .catch((err) => {
-        console.log(err)
-    })
 
-})
 
 
 

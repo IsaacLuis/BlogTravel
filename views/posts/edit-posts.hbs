@@ -1,14 +1,39 @@
-<h2>Edit Posts</h2>
+
+
+<style> 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+h2{
+    text-align: center;
+}
+#lname{
+
+    height: 5rem;
+}
+</style>
+
+<body>
+
+<h2>Edit Post</h2>
 
 <form action="/posts/edit/{{_id}}" method="post"  enctype="multipart/form-data"  >
 
-<label for="">Post Name</label>
-<input type="text" name="name" value="{{name}}">
+  <label for="fname">About the place</label>
+  <input type="text" id="fname" name="name" value="{{name}}">
+    
+  <label for="lname">Description</label>
+  <input type="text" id="lname" name="description"  value="{{description}}" >
 
-<label for="">Description</label>
-<input type="text" name="description" value="{{description}}">
+    <label for="">Image</label>
+    <input type="file" name="imageUrl"  value="{{imageUrl}}">
 
-<label for="">Image</label>
-<input type="file" name="imageUrl" value="{{imageUrl}}">
+<button type="submit"    class="button-12" role="button">Edit </button>
 
-<button type="submit">Edit Submit</button>
+ 
+</form>
+
+</body>

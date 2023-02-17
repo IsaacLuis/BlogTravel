@@ -6,7 +6,15 @@ const mongoose = require('mongoose')
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
+const fileUploader = require('../config/cloudinary.config');
+
+
 const User = require('../models/User.model')
+
+const UserProfile = require('../models/Profile.model')
+
+
+
 
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard.js');
 
@@ -95,12 +103,8 @@ router.post('/signup', isLoggedOut, (req, res, next) => {
 
 })
 
-// **********
-router.get('/profile', isLoggedIn, (req, res, next) => {
-  const user = req.session.user
-  console.log('SESSION =====> ', req.session);
-  res.render('profile.hbs', { user })
-})
+
+// *****  **** 
 
 router.get('/logout', isLoggedIn, (req, res, next) => {
   req.session.destroy(err => {
@@ -108,5 +112,37 @@ router.get('/logout', isLoggedIn, (req, res, next) => {
     res.redirect('/');
   });
 });
+
+
+// **** Profile ******
+router.get('/profile', isLoggedIn, (req, res, next) => {
+  const user = req.session.user
+  console.log('SESSION =====> ', req.session);
+  res.render('profile.hbs', { user })
+})
+
+
+router.post('/profile', isLoggedIn, fileUploader.single('imageUrl'),  (req, res, next) => {
+
+  const { fullname, bio, } = req.body
+
+  UserProfile.create({
+      fullname,
+      bio,
+      imageUrl: req.file.path,
+      
+  })
+  .then((createdProfile) => {
+      console.log("Profile..===>",  createdProfile)
+     // res.redirect('/users/profile')
+      res.render('profile.hbs', { createdProfile});
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+
+})
+
+
 
 module.exports = router;
