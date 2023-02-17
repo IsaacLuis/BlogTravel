@@ -1,56 +1,19 @@
 
   <!-- Add icon library -->
 
-    
-  
-{{#if createdProfile}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
- <link rel="stylesheet" href="/stylesheets/stylepro.css">
-<div class="card">
-  <img src="" alt="/images/userAv.png" style="width:100%">
-  <h1>John Doe</h1>
-  <p class="title">CEO & Founder, Example</p>
-  <p>Harvard University</p>
-  <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
-  <a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
-  <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-  <p><button  >Contact</button></p>
-</div>
-
-
-<h2>Welcome, {{ Profile.fullname }}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/users/profile">Reload the page</a>
-  </button>
-    <button>
-    <a href="/posts/newPost">Create new Post!</a>
-  </button>
-  <a href="/posts/myposts/{{user._id}}"><button>My Posts</button></a>
-
-
-  {{else}}
-
-
-<h2>Add a New Profile</h2>
+  <h2>Add a New Profile</h2>
 
 <form action="/users/profile" method="post" enctype="multipart/form-data">
 
 <label for="">Full name</label>
-<input type="text" name="fullname"  value="{{fullname}}">
+<input type="text" name="fullname"  >
 
 <label for="">Bio</label>
-<input type="text" name="bio" value="{{bio}}">
+<input type="text" name="bio" >
 
 <label for="">Image</label>
-<input type="file" name="imageUrl" value="{{imageUrl}}" >
+<input type="file" name="imageUrl" >
 
 <button type="submit">Add Profile</button>
 
 </form>
-
- 
-
-
-  {{/if}}
-

@@ -12,9 +12,7 @@ const profileSchema = new Schema(
     imageUrl:{
       type: String,
     },
-    posts: [{ 
-        type: Schema.Types.ObjectId, ref: 'Post' 
-    }]
+    powner: { type: Schema.Types.ObjectId, ref: "User" },
   },
   {
     timestamps: true

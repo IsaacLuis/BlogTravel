@@ -1,24 +1,35 @@
+<h1>My Profile</h1>
+
+  
+{{#if foundProfiles}}
+
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <link rel="stylesheet" href="/stylesheets/stylepro.css">
 <div class="card">
-  <img src="" alt="/images/userAv.png" style="width:100%">
-  <h1>John Doe</h1>
-  <p class="title">CEO & Founder, Example</p>
-  <p>Harvard University</p>
+  <img src="{{foundProfiles.imageUrl}}" alt="img not loading" style="width:100%">
+  <h1>{{foundProfiles.fullname}}</h1>
+  <p class="title">A little Bit about myself..</p>
+  <p>{{foundProfiles.bio}}</p>
   <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
   <a href="https://www.linkedin.com/"><i class="fa fa-linkedin"></i></a>
   <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-  <p><button  >Contact</button></p>
+  <a href="/users/profile">  <button>   Edit    </button>   </a>
 </div>
 
 
-<h2>Welcome, {{ Profile.fullname }}!</h2>
-  <p>This is your profile page my friend!</p>
-  <button>
-    <a href="/users/profile">Reload the page</a>
-  </button>
-    <button>
+<button>
     <a href="/posts/newPost">Create new Post!</a>
-  </button>
+</button>
   <a href="/posts/myposts/{{user._id}}"><button>My Posts</button></a>
+
+
+  {{else}}
+  <h3>Dont have a profile set?</h3>
+    <a href="/users/profile"> <button  class="button-12">Create A Profile </button> </a>    
+
+  {{/if}}
+
+
+

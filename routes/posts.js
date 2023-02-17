@@ -28,8 +28,9 @@ router.get('/newPost', isLoggedIn,  (req, res, next) => {
         owner: req.session.user._id
     })
     .then((createdPost) => {
+        
         console.log(createdPost)
-        res.redirect('/posts/all-posts')
+        res.redirect('/')
     })
     .catch((err) => {
         console.log(err)
@@ -141,7 +142,7 @@ router.get('/delete/:id', isOwner, (req, res, next) => {
     Post.findByIdAndDelete(req.params.id)
     .then((deleted) => {
         console.log(deleted)
-        res.redirect('/posts/all-posts')
+        res.redirect('/')
     })
     .catch((err) => {
         console.log(err)

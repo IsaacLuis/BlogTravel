@@ -47,7 +47,7 @@ router.post('/login', isLoggedOut,  (req, res, next)=>{
     else if (bcryptjs.compareSync(password, user.password)) {
       req.session.user = user;
       console.log(req.session);
-      res.redirect('/users/profile');   // /users/profile
+      res.redirect('/');
     }
     else {
       res.render('auth/login.hbs', { errorMessage: 'Incorrect password.' });
@@ -115,33 +115,86 @@ router.get('/logout', isLoggedIn, (req, res, next) => {
 
 
 // **** Profile ******
+/*
 router.get('/profile', isLoggedIn, (req, res, next) => {
   const user = req.session.user
   console.log('SESSION =====> ', req.session);
   res.render('profile.hbs', { user })
 })
+*/
 
+
+
+
+
+router.get('/profile', isLoggedIn,  (req, res, next) => {
+  res.render('profile.hbs');
+});
 
 router.post('/profile', isLoggedIn, fileUploader.single('imageUrl'),  (req, res, next) => {
 
-  const { fullname, bio, } = req.body
+  const { fullname, bio, imageUrl } = req.body
 
   UserProfile.create({
       fullname,
       bio,
       imageUrl: req.file.path,
-      
+      powner: req.session.user._id
   })
   .then((createdProfile) => {
-      console.log("Profile..===>",  createdProfile)
-     // res.redirect('/users/profile')
-      res.render('profile.hbs', { createdProfile});
+      
+      console.log(createdProfile)
+      res.redirect('/');
   })
   .catch((err) => {
       console.log(err)
   })
 
 })
+
+
+router.get('/myprofile/:id', isLoggedIn,(req, res, next) => {
+  const user = req.session.user
+  
+  UserProfile.findOne({powner: req.params.id}).sort({$natural:-1}).limit(1)
+  .populate('powner')
+  .then((foundProfiles) => {
+    
+    
+
+   
+    
+    console.log("FoundProfoles....",foundProfiles)
+     
+    
+      res.render('myprofile.hbs', { foundProfiles,user});
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+
+});
+
+router.post('/edit/:id', fileUploader.single('imageUrl'), (req, res, next) => {
+    const { fullname, bio} = req.body
+    UserProfile.findByIdAndUpdate(req.params.id, 
+        {
+            fullname, 
+            bio,
+            imageUrl: req.file.path,
+        },
+        {new: true})
+    .then((foundProfiles) => {
+        console.log(foundProfiles)
+        res.redirect(`/users/myprofile/${req.params.id}`)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}) 
+
+
+
 
 
 
